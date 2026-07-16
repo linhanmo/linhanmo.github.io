@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林函墨 · 个人主页</title>
+<meta name="description" content="林函墨 — 中国传媒大学智能科学与技术，计算机视觉与金融时序分析方向">
+<style>
+:root{
+  --bg:#0a0e1a;
+  --bg2:#0f1526;
+  --card:rgba(255,255,255,.04);
+  --card-border:rgba(255,255,255,.09);
+  --text:#e8ecf4;
+  --muted:#9aa5bd;
+  --accent:#4dd8d0;
+  --accent2:#6c8cff;
+  --gold:#f0c060;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  overflow-x:hidden;
+}
+/* 背景网格与光晕 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(ellipse 60% 45% at 15% 0%,rgba(108,140,255,.14),transparent 60%),
+    radial-gradient(ellipse 55% 40% at 90% 15%,rgba(77,216,208,.10),transparent 60%),
+    radial-gradient(ellipse 50% 45% at 50% 100%,rgba(108,140,255,.08),transparent 60%),
+    var(--bg);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.35;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 20%,#000 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 20%,#000 30%,transparent 75%);
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ===== 导航 ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(10,14,26,.65);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-inner{max-width:1060px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:1.05rem;letter-spacing:.5px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px;font-size:.92rem;color:var(--muted)}
+.nav-links a{transition:color .25s}
+.nav-links a:hover{color:var(--accent)}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ===== Hero ===== */
+.hero{padding:170px 0 90px;position:relative}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:999px;font-size:.85rem;
+  border:1px solid rgba(77,216,208,.35);color:var(--accent);
+  background:rgba(77,216,208,.08);margin-bottom:26px;
+}
+.hero-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.hero h1{
+  font-size:clamp(2.6rem,6vw,4.2rem);font-weight:800;line-height:1.15;letter-spacing:2px;
+  background:linear-gradient(120deg,#fff 30%,var(--accent) 65%,var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero .tagline{margin-top:14px;font-size:clamp(1.05rem,2.4vw,1.35rem);color:var(--muted);letter-spacing:1px}
+.hero .tagline b{color:var(--text);font-weight:600}
+.hero .desc{margin-top:22px;max-width:640px;color:var(--muted);font-size:.98rem}
+.hero-actions{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:12px 26px;border-radius:12px;
+  font-size:.95rem;font-weight:600;transition:transform .25s,box-shadow .25s,background .25s;
+}
+.btn-primary{
+  background:linear-gradient(120deg,var(--accent),var(--accent2));color:#0a0e1a;
+  box-shadow:0 8px 28px rgba(77,216,208,.28);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(77,216,208,.4)}
+.btn-ghost{border:1px solid var(--card-border);background:var(--card);color:var(--text)}
+.btn-ghost:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25)}
+
+/* 统计条 */
+.stats{
+  margin-top:64px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;
+}
+.stat{
+  padding:20px 12px;text-align:center;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--card-border);
+  transition:transform .3s,border-color .3s;
+}
+.stat:hover{transform:translateY(-4px);border-color:rgba(77,216,208,.4)}
+.stat .num{font-size:1.9rem;font-weight:800;color:var(--accent);line-height:1.2}
+.stat .lbl{font-size:.82rem;color:var(--muted);margin-top:2px}
+@media(max-width:760px){.stats{grid-template-columns:repeat(3,1fr)}.stat .num{font-size:1.5rem}}
+
+/* ===== 区块 ===== */
+section{padding:72px 0}
+.sec-head{margin-bottom:40px}
+.sec-kicker{font-size:.82rem;letter-spacing:3px;color:var(--accent);text-transform:uppercase;font-weight:600}
+.sec-title{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;margin-top:6px;letter-spacing:1px}
+.sec-title::after{content:"";display:block;width:52px;height:3px;border-radius:2px;margin-top:12px;
+  background:linear-gradient(90deg,var(--accent),transparent)}
+
+.card{
+  background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+  padding:28px 30px;transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(108,140,255,.35);box-shadow:0 18px 44px rgba(0,0,0,.35)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:760px){.grid-2{grid-template-columns:1fr}}
+
+/* 标签 */
+.chip{
+  display:inline-block;padding:4px 13px;border-radius:999px;font-size:.78rem;font-weight:600;
+  background:rgba(108,140,255,.12);color:var(--accent2);border:1px solid rgba(108,140,255,.28);
+  margin:3px 4px 3px 0;
+}
+.chip.teal{background:rgba(77,216,208,.1);color:var(--accent);border-color:rgba(77,216,208,.3)}
+.chip.gold{background:rgba(240,192,96,.1);color:var(--gold);border-color:rgba(240,192,96,.3)}
+
+/* 卡片标题行 */
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.card-head h3{font-size:1.18rem;font-weight:700}
+.card-head .sub{color:var(--muted);font-size:.88rem;margin-top:3px}
+.tag{
+  flex-shrink:0;padding:5px 14px;border-radius:999px;font-size:.76rem;font-weight:700;letter-spacing:.5px;
+  background:rgba(77,216,208,.12);color:var(--accent);border:1px solid rgba(77,216,208,.35);white-space:nowrap;
+}
+.tag.purple{background:rgba(108,140,255,.12);color:var(--accent2);border-color:rgba(108,140,255,.35)}
+
+/* 列表 */
+ul.dots{list-style:none;margin-top:6px}
+ul.dots li{
+  position:relative;padding-left:20px;margin-bottom:12px;color:#c3cbdd;font-size:.94rem;
+}
+ul.dots li::before{
+  content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));transform:rotate(45deg);
+}
+ul.dots li b{color:var(--text)}
+
+/* 项目卡 */
+.proj-stack{display:flex;flex-direction:column;gap:22px}
+.proj-num{
+  font-size:.8rem;font-weight:800;letter-spacing:2px;color:var(--accent2);opacity:.85;margin-bottom:6px;
+}
+
+/* 技能 */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.skill-card h4{font-size:.98rem;margin-bottom:12px;color:var(--accent)}
+.skill-card p{color:var(--muted);font-size:.9rem}
+
+/* 获奖 */
+.award-list{display:flex;flex-direction:column;gap:14px}
+.award{
+  display:flex;align-items:center;gap:18px;padding:18px 24px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--card-border);transition:transform .3s,border-color .3s;
+}
+.award:hover{transform:translateX(6px);border-color:rgba(240,192,96,.4)}
+.award .medal{
+  flex-shrink:0;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:rgba(240,192,96,.12);border:1px solid rgba(240,192,96,.3);font-size:1.2rem;
+}
+.award .info{flex:1}
+.award .name{font-weight:600;font-size:.98rem}
+.award .note{color:var(--muted);font-size:.84rem}
+.award .level{flex-shrink:0;font-size:.8rem;font-weight:700;color:var(--gold);white-space:nowrap}
+
+/* 联系 / 页脚 */
+footer{padding:70px 0 46px;text-align:center;border-top:1px solid rgba(255,255,255,.06);margin-top:40px}
+footer .mail{
+  font-size:1.35rem;font-weight:700;letter-spacing:.5px;
+  background:linear-gradient(120deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+footer p{color:var(--muted);font-size:.86rem;margin-top:14px}
+
+/* 滚动显现（仅在 JS 可用时隐藏，避免无脚本时内容不可见） */
+html.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+html.js .reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Lin<span>Hanmo</span>.dev</div>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#research">科研</a>
+      <a href="#projects">项目</a>
+      <a href="#skills">技能</a>
+      <a href="#awards">获奖</a>
+      <a href="#contact">联系</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge">中国传媒大学海南国际学院 · 智能科学与技术 · 大二</div>
+    <h1>林函墨</h1>
+    <p class="tagline">专注 <b>计算机视觉</b> · <b>金融时序分析</b> · <b>模型轻量化</b></p>
+    <p class="desc">
+      以模型高效化为主线，覆盖医学影像分割、人体姿态识别、多模态情感分析与金融时序预测；
+      具备从论文复现、算法设计到全栈工程落地的完整经验。
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:3433466213@qq.com">✉ 邮箱联系</a>
+      <a class="btn btn-ghost" href="#projects">查看项目经历 ↓</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">14</div><div class="lbl">GitHub 开源仓库</div></div>
+      <div class="stat"><div class="num">10</div><div class="lbl">正式项目</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl">在投学术论文</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">省级竞赛奖项</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">软件著作权</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 关于我 ============ -->
+<section id="about">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">About</div>
+      <h2 class="sec-title">关于我</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-head"><h3>🎓 教育背景</h3></div>
+        <ul class="dots">
+          <li><b>中国传媒大学海南国际学院</b> — 智能科学与技术专业，本科二年级在读</li>
+          <li>校科创社<b>联合创始人</b>、<b>技术总监</b></li>
+          <li>曾任学校 <b>C 语言</b> 与 <b>Python</b> 课程助教，辅助导师进行教材编写</li>
+          <li>主持大学生创新创业训练项目 <b>1 项</b>，独立开发并原始取得<b>软件著作权 5 项</b></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card-head"><h3>🧭 研究方向</h3></div>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:10px">当前方向</p>
+        <div>
+          <span class="chip teal">计算机视觉</span>
+          <span class="chip teal">目标检测</span>
+          <span class="chip teal">金融时序分析</span>
+          <span class="chip teal">模型轻量化</span>
+        </div>
+        <p style="color:var(--muted);font-size:.9rem;margin:18px 0 10px">未来方向</p>
+        <div>
+          <span class="chip">因果机器学习</span>
+          <span class="chip">表示学习</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 科研经历 ============ -->
+<section id="research">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Research</div>
+      <h2 class="sec-title">科研经历</h2>
+    </div>
+    <div class="card reveal" style="margin-bottom:22px">
+      <div class="card-head">
+        <div>
+          <h3>指导老师 · 张三义</h3>
+          <div class="sub">中国科学院信息工程研究所</div>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:.92rem">
+        原信息安全国家重点实验室博士后，北京图象图形学学会青年工作委员，CCF 多媒体技术专业委员会执行委员。
+      </p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal">
+        <div class="card-head">
+          <div>
+            <h3>LPDP-RiR · 医学影像分割</h3>
+            <div class="sub">课题一 · 承担全部开发工作</div>
+          </div>
+          <span class="tag">已投稿 ICIG 2026</span>
+        </div>
+        <ul class="dots">
+          <li>设计<b>分布感知量化 — 能量频域 Token 剪枝</b>联合轻量化模块</li>
+          <li>在精度无损的情况下实现模型参数量的大幅压缩</li>
+          <li>对 INT8 量化下的 3D-RWKV 模型实现额外 <b>20% 剪枝</b>，保持无损级别的 Dice 与 HD95 指标</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="card-head">
+          <div>
+            <h3>P2AD · 人体姿态识别</h3>
+            <div class="sub">课题二 · 承担全部开发工作</div>
+          </div>
+          <span class="tag purple">已投稿 CICAI 2026</span>
+        </div>
+        <ul class="dots">
+          <li>设计<b>姿态感知剪枝 — 剪枝感知动态蒸馏</b>联合轻量化模块</li>
+          <li>对 HRNet-W48 在 <b>78.2% 剪枝率</b>下精度依旧比肩 SOTA 模型</li>
+          <li>精度无损、参数量大幅压缩，同时保持优秀的泛化性</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 项目经历 ============ -->
+<section id="projects">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Projects</div>
+      <h2 class="sec-title">项目经历</h2>
+    </div>
+    <div class="proj-stack">
+
+      <div class="card reveal">
+        <div class="proj-num">PROJECT 01</div>
+        <div class="card-head">
+          <div>
+            <h3>智能医学影像平台</h3>
+            <div class="sub">核心开发 · Vue3 / QT6 / C++17 / 3D-RWKV</div>
+          </div>
+          <span class="tag">核心开发</span>
+        </div>
+        <ul class="dots">
+          <li>主导设计并开发肺部智能诊疗医学影像平台，采用 <b>HTML5 + Vue3 + GSAP</b> 构建响应式 Web 前端、<b>QT6 + QML</b> 开发高性能桌面客户端，统一前后端 API 接口与数据交互规范，实现跨 Windows / Linux 平台的一致体验，满足院内工作站与远程会诊双重场景。</li>
+          <li>基于 <b>C++17</b> 搭建高性能微服务后端架构，深度解析 <b>DICOM 3.0</b> 标准医学影像数据，实现 CT、MRI、PET 等多模态影像统一加载与预处理；自研 <b>3D 体绘制渲染引擎</b>，支持百万级体素数据的实时旋转、缩放、剖切与透明度调节。</li>
+          <li>部署轻量化后的 <b>3D-RWKV 系列时空卷积模型</b>，实现肺部组织、肺叶、肺段及结节的全自动像素级精准分割；创新性融合 CT 平扫 + 增强 + PET-CT 多模态影像特征，构建多尺度特征融合网络，精度速度两不误。</li>
+          <li>设计并实现 <b>AI 辅助手术路径规划系统</b>，基于 3D 分割结果自动重建肺部血管、支气管与病灶的三维解剖结构，精准计算病灶与关键组织的空间距离；支持医生交互式调整切口位置与切除范围，自动生成最优手术路径并模拟切除效果。</li>
+          <li>引入 <b>Redis 集群</b>缓存热点影像元数据、模型推理结果与用户会话信息，采用多级缓存策略大幅缩短大尺寸 3D 影像加载时间，稳定支持高并发影像分析操作。</li>
+          <li>全面负责医疗数据安全体系建设，实现 <b>TLS 1.3 传输加密 + AES-256 存储加密</b>的全链路数据保护；集成差分隐私、同态加密等隐私保护算法，确保医疗敏感数据在计算过程中不泄露。</li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="proj-num">PROJECT 02</div>
+        <div class="card-head">
+          <div>
+            <h3>多模态联合情感投票分类系统</h3>
+            <div class="sub">核心开发 · 音频-文本双模态 · 异构集成投票</div>
+          </div>
+          <span class="tag">核心开发</span>
+        </div>
+        <ul class="dots">
+          <li>主导设计音频-文本双模态异构集成情感分析方案，基于多模型加权投票架构实现离散区间化情感分类，解决单一模型泛化性不足、单模态特征表达片面的问题，支持正负向 <b>5 级粒度</b>的情感强度精准分级。</li>
+          <li>构建覆盖卷积、循环、Transformer、混合架构、胶囊网络、线性统计 <b>6 大类技术路线</b>的异构基模型矩阵：文本侧部署 TextCNN、BiLSTM-Attention、BERT、TextRCNN、TextCapsule、FastText 共 6 种差异化模型；音频侧通过 1D-CNN 与声学 Transformer 提取梅尔频谱中的韵律、音调、语速等情感声学特征，形成多维互补。</li>
+          <li>设计<b>分层自适应加权投票融合机制</b>：单模态内完成软投票聚合，再通过验证集网格搜索与梯度优化自适应学习各模态、各基模型权重系数，有效降低单一模型偏差与噪声干扰，显著提升系统鲁棒性。</li>
+          <li>落地情感标签离散区间化映射方案，针对区间边界样本分类模糊的痛点引入<b>边界敏感损失函数</b>，分级准确率较传统连续回归方案显著提升，可支撑批量音视频内容的离线情感分析业务需求。</li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="proj-num">PROJECT 03</div>
+        <div class="card-head">
+          <div>
+            <h3>多模态虚假信息智能检测系统</h3>
+            <div class="sub">核心开发 · 文本语义核验 + 视觉真伪鉴别 + 跨模态一致性校验</div>
+          </div>
+          <span class="tag">核心开发</span>
+        </div>
+        <ul class="dots">
+          <li>主导研发面向社交内容场景的多模态虚假信息检测系统，针对不实图文语义错位、视觉篡改、事实混淆等多样化造假手段，构建「文本语义核验 + 视觉真伪鉴别 + 跨模态一致性校验」<b>三位一体的检测框架</b>，实现虚假内容精准识别与风险等级划分。</li>
+          <li>搭建覆盖 <b>7 类差异化模型架构</b>的异构特征提取矩阵：文本侧部署 RoBERTa、TextRCNN、BiLSTM-Attention 三类模型；图像侧基于 ResNet50、ViT、SRM 篡改检测网络提取视觉语义、深度伪造痕迹与像素级篡改特征；引入 CLIP 预训练模型完成跨模态语义初始对齐。</li>
+          <li>设计「<b>特征级细粒度对齐 + 决策级自适应投票</b>」双层融合方案：特征层通过跨模态注意力机制实现文本实体与图像区域的语义映射；决策层融合三类检测维度的输出概率，通过网格搜索自适应分配权重，输出综合虚假置信度。</li>
+          <li>落地虚假风险离散分级机制，划分为「真实 - 存疑 - 低风险虚假 - 高风险虚假」4 个等级；针对难样本引入<b>难样本挖掘与对比学习</b>策略优化分类边界。系统支持每日百万级内容批量检测，可对接内容审核平台实现自动化风险拦截。</li>
+        </ul>
+      </div>
+
+      <div class="card reveal">
+        <div class="proj-num">PROJECT 04</div>
+        <div class="card-head">
+          <div>
+            <h3>轻量化多模态金融时序预测平台</h3>
+            <div class="sub">核心开发 · Bi-Mamba-Freq · 多模态动态知识蒸馏</div>
+          </div>
+          <span class="tag">核心开发</span>
+        </div>
+        <ul class="dots">
+          <li>针对金融市场单模态信息片面、双向因果依赖难捕捉、多频率成分混叠、极端行情模型失效的核心痛点，主导研发 <b>Bi-Mamba-Freq 多模态预测架构</b>，以选择性状态空间模型为核心基座，融合量价时序、舆情文本、财报结构化特征，支撑涨跌方向分类与波动率预测双核心任务。</li>
+          <li>设计<b>参数共享式双向 Mamba 编码单元</b>，零额外参数量开销且推理保持 O(L) 线性复杂度；创新提出 <b>Δ 步长分组初始化机制</b>，按高 / 中 / 低频注入时间尺度先验，单次扫描内实现多频率特征解耦；构建跨模态特征对齐模块，精准捕捉舆情事件与价格走势的长程联动关系。</li>
+          <li>落地「<b>低秩原生压缩 + 多模态动态知识蒸馏</b>」轻量化方案：对输入输出投影层执行低秩分解；构建多模态教师—单模态学生蒸馏框架，通过方向对齐、小波域频率对齐、跨模态语义对齐三重损失，将跨模态前瞻知识高效迁移至纯量价轻量化学生模型。</li>
+          <li>搭建多维度验证体系：模型涨跌分类 <b>MCC 指标与 Transformer 类多模态 SOTA 模型持平</b>，参数量大幅压缩，单样本推理延迟大幅降低，并发吞吐量大幅提升。</li>
+          <li>设计高波动期、趋势反转期、跳空缺口三类极端行情压力测试场景，模型精度退化率控制在 <b>1.7% 以内</b>，显著优于传统剪枝、量化等事后压缩方案；内置 Δ 事件归因、双向分歧度拐点预警、多模态贡献度分解三类可解释性指标，满足金融监管模型合规审计要求。</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 技能 ============ -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Skills</div>
+      <h2 class="sec-title">技能栈</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="card skill-card reveal">
+        <h4>编程语言</h4>
+        <span class="chip teal">Python 开发</span>
+        <span class="chip teal">C++ 底层开发</span>
+        <span class="chip teal">Matlab 数据分析</span>
+      </div>
+      <div class="card skill-card reveal">
+        <h4>深度学习框架</h4>
+        <span class="chip">PyTorch</span>
+        <span class="chip">TensorFlow</span>
+      </div>
+      <div class="card skill-card reveal">
+        <h4>工程能力</h4>
+        <span class="chip">全栈开发</span>
+        <span class="chip">科研代码经验</span>
+        <span class="chip">Linux 系统开发环境</span>
+      </div>
+      <div class="card skill-card reveal">
+        <h4>开源情况</h4>
+        <p>GitHub 共 <b style="color:var(--accent)">14 个开源仓库</b>，其中正式项目 10 个，覆盖医学影像、多模态分析与金融时序等方向。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 获奖 ============ -->
+<section id="awards">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">Honors</div>
+      <h2 class="sec-title">获奖情况</h2>
+    </div>
+    <div class="award-list">
+      <div class="award reveal">
+        <div class="medal">🥇</div>
+        <div class="info">
+          <div class="name">全国大学生电子商务「创新、创意及创业」挑战赛</div>
+          <div class="note">团队负责人</div>
+        </div>
+        <div class="level">省级一等奖</div>
+      </div>
+      <div class="award reveal">
+        <div class="medal">🥈</div>
+        <div class="info">
+          <div class="name">中国国际大学生创新大赛</div>
+          <div class="note">团队成员</div>
+        </div>
+        <div class="level">省级二等奖</div>
+      </div>
+      <div class="award reveal">
+        <div class="medal">🥈</div>
+        <div class="info">
+          <div class="name">「国才杯」全国大学生外语能力大赛</div>
+          <div class="note">团队成员</div>
+        </div>
+        <div class="level">省级二等奖</div>
+      </div>
+      <div class="award reveal">
+        <div class="medal">🥈</div>
+        <div class="info">
+          <div class="name">蓝桥杯全国软件和信息技术专业人才大赛</div>
+          <div class="note">个人赛</div>
+        </div>
+        <div class="level">省级二等奖</div>
+      </div>
+      <div class="award reveal">
+        <div class="medal">🥉</div>
+        <div class="info">
+          <div class="name">计算机程序设计大赛</div>
+          <div class="note">团队成员</div>
+        </div>
+        <div class="level">省级三等奖</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 联系 ============ -->
+<footer id="contact">
+  <div class="container reveal">
+    <div class="sec-kicker" style="margin-bottom:10px">Contact</div>
+    <a class="mail" href="mailto:3433466213@qq.com">3433466213@qq.com</a>
+    <p>欢迎就科研合作、项目交流与实习机会与我联系</p>
+    <p style="margin-top:26px;opacity:.6">© 2026 林函墨 · Powered by GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+// 滚动显现动画
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// 兜底：若浏览器不支持 IntersectionObserver 或回调异常，直接显示全部内容
+if(!('IntersectionObserver' in window)){
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+}
+setTimeout(()=>{
+  document.querySelectorAll('.reveal').forEach(el=>{
+    const r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight) el.classList.add('visible');
+  });
+},1200);
+
+// 导航高亮当前区块
+const links = document.querySelectorAll('.nav-links a');
+const secs = [...links].map(a=>document.querySelector(a.getAttribute('href')));
+window.addEventListener('scroll',()=>{
+  let idx = -1;
+  secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top < 140) idx = i; });
+  links.forEach((a,i)=>a.style.color = i===idx ? 'var(--accent)' : '');
+},{passive:true});
+</script>
+
+</body>
+</html>
