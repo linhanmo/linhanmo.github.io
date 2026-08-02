@@ -27,7 +27,6 @@ body{
   line-height:1.75;
   overflow-x:hidden;
 }
-/* 背景网格与光晕 */
 body::before{
   content:"";position:fixed;inset:0;z-index:-2;
   background:
@@ -48,7 +47,6 @@ body::after{
 a{color:inherit;text-decoration:none}
 .container{max-width:1060px;margin:0 auto;padding:0 24px}
 
-/* ===== 导航 ===== */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
@@ -63,7 +61,6 @@ nav{
 .nav-links a:hover{color:var(--accent)}
 @media(max-width:640px){.nav-links{display:none}}
 
-/* ===== Hero ===== */
 .hero{padding:170px 0 90px;position:relative}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
@@ -93,10 +90,7 @@ nav{
 .btn-ghost{border:1px solid var(--card-border);background:var(--card);color:var(--text)}
 .btn-ghost:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25)}
 
-/* 统计条 */
-.stats{
-  margin-top:64px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;
-}
+.stats{margin-top:64px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .stat{
   padding:20px 12px;text-align:center;border-radius:var(--radius);
   background:var(--card);border:1px solid var(--card-border);
@@ -107,7 +101,6 @@ nav{
 .stat .lbl{font-size:.82rem;color:var(--muted);margin-top:2px}
 @media(max-width:760px){.stats{grid-template-columns:repeat(3,1fr)}.stat .num{font-size:1.5rem}}
 
-/* ===== 区块 ===== */
 section{padding:72px 0}
 .sec-head{margin-bottom:40px}
 .sec-kicker{font-size:.82rem;letter-spacing:3px;color:var(--accent);text-transform:uppercase;font-weight:600}
@@ -123,7 +116,6 @@ section{padding:72px 0}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 @media(max-width:760px){.grid-2{grid-template-columns:1fr}}
 
-/* 标签 */
 .chip{
   display:inline-block;padding:4px 13px;border-radius:999px;font-size:.78rem;font-weight:600;
   background:rgba(108,140,255,.12);color:var(--accent2);border:1px solid rgba(108,140,255,.28);
@@ -132,7 +124,6 @@ section{padding:72px 0}
 .chip.teal{background:rgba(77,216,208,.1);color:var(--accent);border-color:rgba(77,216,208,.3)}
 .chip.gold{background:rgba(240,192,96,.1);color:var(--gold);border-color:rgba(240,192,96,.3)}
 
-/* 卡片标题行 */
 .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
 .card-head h3{font-size:1.18rem;font-weight:700}
 .card-head .sub{color:var(--muted);font-size:.88rem;margin-top:3px}
@@ -141,32 +132,23 @@ section{padding:72px 0}
   background:rgba(77,216,208,.12);color:var(--accent);border:1px solid rgba(77,216,208,.35);white-space:nowrap;
 }
 .tag.purple{background:rgba(108,140,255,.12);color:var(--accent2);border-color:rgba(108,140,255,.35)}
-/* 新增：已录用金色标签样式 */
 .tag.accepted{background:rgba(240,192,96,.12);color:var(--gold);border-color:rgba(240,192,96,.4)}
 
-/* 列表 */
 ul.dots{list-style:none;margin-top:6px}
-ul.dots li{
-  position:relative;padding-left:20px;margin-bottom:12px;color:#c3cbdd;font-size:.94rem;
-}
+ul.dots li{position:relative;padding-left:20px;margin-bottom:12px;color:#c3cbdd;font-size:.94rem}
 ul.dots li::before{
   content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:2px;
   background:linear-gradient(135deg,var(--accent),var(--accent2));transform:rotate(45deg);
 }
 ul.dots li b{color:var(--text)}
 
-/* 项目卡 */
 .proj-stack{display:flex;flex-direction:column;gap:22px}
-.proj-num{
-  font-size:.8rem;font-weight:800;letter-spacing:2px;color:var(--accent2);opacity:.85;margin-bottom:6px;
-}
+.proj-num{font-size:.8rem;font-weight:800;letter-spacing:2px;color:var(--accent2);opacity:.85;margin-bottom:6px}
 
-/* 技能 */
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
 .skill-card h4{font-size:.98rem;margin-bottom:12px;color:var(--accent)}
 .skill-card p{color:var(--muted);font-size:.9rem}
 
-/* 获奖 */
 .award-list{display:flex;flex-direction:column;gap:14px}
 .award{
   display:flex;align-items:center;gap:18px;padding:18px 24px;border-radius:var(--radius);
@@ -182,7 +164,6 @@ ul.dots li b{color:var(--text)}
 .award .note{color:var(--muted);font-size:.84rem}
 .award .level{flex-shrink:0;font-size:.8rem;font-weight:700;color:var(--gold);white-space:nowrap}
 
-/* 联系 / 页脚 */
 footer{padding:70px 0 46px;text-align:center;border-top:1px solid rgba(255,255,255,.06);margin-top:40px}
 footer .mail{
   font-size:1.35rem;font-weight:700;letter-spacing:.5px;
@@ -191,7 +172,6 @@ footer .mail{
 }
 footer p{color:var(--muted);font-size:.86rem;margin-top:14px}
 
-/* 滚动显现（仅在 JS 可用时隐藏，避免无脚本时内容不可见） */
 html.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 html.js .reveal.visible{opacity:1;transform:none}
 </style>
@@ -228,8 +208,8 @@ html.js .reveal.visible{opacity:1;transform:none}
       <a class="btn btn-ghost" href="#projects">查看项目经历 ↓</a>
     </div>
     <div class="stats">
-      <div class="stat"><div class="num" id="github-repo-count">14</div><div class="lbl">GitHub 开源仓库</div></div>
-      <!-- ✅ 修改：在投 → 已录用 -->
+      <!-- ✅ 兜底值更新为 21 -->
+      <div class="stat"><div class="num" id="github-repo-count">21</div><div class="lbl">GitHub 开源仓库</div></div>
       <div class="stat"><div class="num">2</div><div class="lbl">已录用学术论文</div></div>
       <div class="stat"><div class="num">5</div><div class="lbl">省级竞赛奖项</div></div>
       <div class="stat"><div class="num">5</div><div class="lbl">软件著作权</div></div>
@@ -298,7 +278,6 @@ html.js .reveal.visible{opacity:1;transform:none}
             <h3>LPDP-RiR · 医学影像分割</h3>
             <div class="sub">课题一 · 承担全部开发工作</div>
           </div>
-          <!-- ✅ 修改：已投稿 → 已录用，使用金色 accepted 样式 -->
           <span class="tag accepted">✓ Accepted · ICIG 2026</span>
         </div>
         <ul class="dots">
@@ -313,7 +292,6 @@ html.js .reveal.visible{opacity:1;transform:none}
             <h3>P2AD · 人体姿态识别</h3>
             <div class="sub">课题二 · 承担全部开发工作</div>
           </div>
-          <!-- ✅ 修改：已投稿 → 已录用，使用金色 accepted 样式 -->
           <span class="tag accepted">✓ Accepted · ICIG 2026</span>
         </div>
         <ul class="dots">
@@ -334,7 +312,6 @@ html.js .reveal.visible{opacity:1;transform:none}
       <h2 class="sec-title">项目经历</h2>
     </div>
     <div class="proj-stack">
-
       <div class="card reveal">
         <div class="proj-num">PROJECT 01</div>
         <div class="card-head">
@@ -405,7 +382,6 @@ html.js .reveal.visible{opacity:1;transform:none}
           <li>设计高波动期、趋势反转期、跳空缺口三类极端行情压力测试场景，模型精度退化率控制在 <b>1.7% 以内</b>，显著优于传统剪枝、量化等事后压缩方案；内置 Δ 事件归因、双向分歧度拐点预警、多模态贡献度分解三类可解释性指标，满足金融监管模型合规审计要求。</li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
@@ -441,7 +417,8 @@ html.js .reveal.visible{opacity:1;transform:none}
           GitHub 共 
           <b style="color:var(--accent)">
             <a href="https://github.com/linhanmo" target="_blank" rel="noopener noreferrer" style="color:inherit;border-bottom:1px dashed transparent;transition:border-color .25s">
-              <span id="github-repo-count-2">14</span> 个开源仓库
+              <!-- ✅ 兜底值同步更新为 21 -->
+              <span id="github-repo-count-2">21</span> 个开源仓库
             </a>
           </b>
           ，覆盖医学影像、多模态分析与金融时序等方向。
@@ -463,6 +440,7 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥇</div>
         <div class="info">
           <div class="name">全国大学生电子商务「创新、创意及创业」挑战赛</div>
+          <!-- ✅ 已为负责人，保持不变 -->
           <div class="note">团队负责人</div>
         </div>
         <div class="level">省级一等奖</div>
@@ -471,7 +449,8 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥈</div>
         <div class="info">
           <div class="name">中国国际大学生创新大赛</div>
-          <div class="note">团队成员</div>
+          <!-- ✅ 团队成员 → 团队负责人 -->
+          <div class="note">团队负责人</div>
         </div>
         <div class="level">省级二等奖</div>
       </div>
@@ -479,7 +458,8 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥈</div>
         <div class="info">
           <div class="name">「国才杯」全国大学生外语能力大赛</div>
-          <div class="note">团队成员</div>
+          <!-- ✅ 团队成员 → 团队负责人 -->
+          <div class="note">团队负责人</div>
         </div>
         <div class="level">省级二等奖</div>
       </div>
@@ -487,6 +467,7 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥈</div>
         <div class="info">
           <div class="name">蓝桥杯全国软件和信息技术专业人才大赛</div>
+          <!-- 个人赛无需修改 -->
           <div class="note">个人赛</div>
         </div>
         <div class="level">省级二等奖</div>
@@ -495,7 +476,8 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥉</div>
         <div class="info">
           <div class="name">计算机程序设计大赛</div>
-          <div class="note">团队成员</div>
+          <!-- ✅ 团队成员 → 团队负责人 -->
+          <div class="note">团队负责人</div>
         </div>
         <div class="level">省级三等奖</div>
       </div>
@@ -545,11 +527,12 @@ window.addEventListener('scroll',()=>{
   links.forEach((a,i)=>a.style.color = i===idx ? 'var(--accent)' : '');
 },{passive:true});
 
-// ===== 3. GitHub 仓库数量动态刷新（增强版） =====
+// ===== 3. GitHub 仓库数量动态刷新（三层兜底） =====
+// 兜底优先级：API 实时数据 > localStorage 缓存 > HTML 硬编码默认值(21)
 function animateNumber(element, target, duration = 1200) {
   if (!element) return;
   const start = parseInt(element.textContent) || 0;
-  if (start === target) return; // 值未变化则跳过动画
+  if (start === target) return;
   
   const startTime = performance.now();
   function update(currentTime) {
@@ -568,12 +551,14 @@ async function updateGitHubRepoCount(forceRefresh = false) {
   const GITHUB_USERNAME = "linhanmo";
   const CACHE_KEY = "github_repo_count";
   const CACHE_TIME_KEY = "github_repo_update_time";
-  const CACHE_VALID_MS = 3600 * 1000; // 1小时缓存有效期
+  const CACHE_VALID_MS = 3600 * 1000;
+  // ✅ 硬编码兜底值，与 HTML 中的默认值保持一致
+  const FALLBACK_COUNT = 21;
 
   const el1 = document.getElementById("github-repo-count");
   const el2 = document.getElementById("github-repo-count-2");
 
-  // 优先读取本地缓存（非强制刷新时）
+  // 第一层：本地缓存（1小时内有效）
   if (!forceRefresh) {
     try {
       const cachedCount = localStorage.getItem(CACHE_KEY);
@@ -583,47 +568,48 @@ async function updateGitHubRepoCount(forceRefresh = false) {
         animateNumber(el2, Number(cachedCount));
         return;
       }
-    } catch (e) { /* localStorage 不可用时跳过 */ }
+    } catch (e) {}
   }
 
+  // 第二层：GitHub API 实时请求
   try {
-    // 追加时间戳绕过浏览器 HTTP 缓存
     const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}?t=${Date.now()}`);
-    
-    // 处理 API 速率限制 (403)
-    if (res.status === 403) {
-      console.warn("[GitHub] API 速率限制触发，回退至缓存/默认值");
-      throw new Error("Rate limit exceeded");
-    }
+    if (res.status === 403) throw new Error("Rate limit exceeded");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     
     const data = await res.json();
     const realCount = data.public_repos;
 
-    // 写入本地缓存
     try {
       localStorage.setItem(CACHE_KEY, realCount);
       localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
     } catch (e) {}
 
-    // 更新页面并播放数字动画
     animateNumber(el1, realCount);
     animateNumber(el2, realCount);
 
   } catch (err) {
-    console.warn("[GitHub] 获取失败:", err.message);
-    // 失败时尝试使用过期缓存作为兜底（优于 HTML 硬编码值）
+    console.warn("[GitHub] API 获取失败:", err.message);
+    
+    // 第三层：过期缓存兜底
     try {
-      const fallback = localStorage.getItem(CACHE_KEY);
-      if (fallback) {
-        animateNumber(el1, Number(fallback));
-        animateNumber(el2, Number(fallback));
+      const staleCache = localStorage.getItem(CACHE_KEY);
+      if (staleCache) {
+        animateNumber(el1, Number(staleCache));
+        animateNumber(el2, Number(staleCache));
+        return;
       }
     } catch(e){}
+    
+    // 最终兜底：HTML 中已硬编码 FALLBACK_COUNT(21)，无需额外操作
+    // 若页面被 JS 意外清空了数字，此处可强制回填
+    if (el1 && (!el1.textContent || el1.textContent === '0')) {
+      animateNumber(el1, FALLBACK_COUNT);
+      animateNumber(el2, FALLBACK_COUNT);
+    }
   }
 }
 
-// 页面加载完成后自动执行
 document.addEventListener("DOMContentLoaded", () => updateGitHubRepoCount(false));
 </script>
 
