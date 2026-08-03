@@ -174,6 +174,20 @@ footer p{color:var(--muted);font-size:.86rem;margin-top:14px}
 
 html.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 html.js .reveal.visible{opacity:1;transform:none}
+
+/* ===== 新增：刷新按钮样式 ===== */
+.repo-count-wrap{display:inline-flex;align-items:center;gap:6px}
+.refresh-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.06);color:var(--muted);
+  cursor:pointer;transition:all .25s;padding:0;flex-shrink:0;
+}
+.refresh-btn:hover{background:rgba(77,216,208,.15);color:var(--accent)}
+.refresh-btn:active{transform:scale(.9)}
+.refresh-btn svg{width:14px;height:14px;fill:currentColor}
+.refresh-btn.spinning svg{animation:spin .8s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -208,8 +222,16 @@ html.js .reveal.visible{opacity:1;transform:none}
       <a class="btn btn-ghost" href="#projects">查看项目经历 ↓</a>
     </div>
     <div class="stats">
-      <!-- ✅ 兜底值更新为 21 -->
-      <div class="stat"><div class="num" id="github-repo-count">21</div><div class="lbl">GitHub 开源仓库</div></div>
+      <div class="stat">
+        <!-- ✅ 新增刷新按钮 -->
+        <div class="num repo-count-wrap">
+          <span id="github-repo-count">21</span>
+          <button class="refresh-btn" id="refresh-hero" title="手动刷新仓库数" aria-label="刷新GitHub仓库数量">
+            <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4C7.58 4 4.01 7.58 4.01 12S7.58 20 12 20c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+          </button>
+        </div>
+        <div class="lbl">GitHub 开源仓库</div>
+      </div>
       <div class="stat"><div class="num">2</div><div class="lbl">已录用学术论文</div></div>
       <div class="stat"><div class="num">5</div><div class="lbl">省级竞赛奖项</div></div>
       <div class="stat"><div class="num">5</div><div class="lbl">软件著作权</div></div>
@@ -417,8 +439,13 @@ html.js .reveal.visible{opacity:1;transform:none}
           GitHub 共 
           <b style="color:var(--accent)">
             <a href="https://github.com/linhanmo" target="_blank" rel="noopener noreferrer" style="color:inherit;border-bottom:1px dashed transparent;transition:border-color .25s">
-              <!-- ✅ 兜底值同步更新为 21 -->
-              <span id="github-repo-count-2">21</span> 个开源仓库
+              <!-- ✅ 新增刷新按钮 -->
+              <span class="repo-count-wrap">
+                <span id="github-repo-count-2">21</span>
+                <button class="refresh-btn" id="refresh-skills" title="手动刷新仓库数" aria-label="刷新GitHub仓库数量">
+                  <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0 0 12 4C7.58 4 4.01 7.58 4.01 12S7.58 20 12 20c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                </button>
+              </span> 个开源仓库
             </a>
           </b>
           ，覆盖医学影像、多模态分析与金融时序等方向。
@@ -440,7 +467,6 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥇</div>
         <div class="info">
           <div class="name">全国大学生电子商务「创新、创意及创业」挑战赛</div>
-          <!-- ✅ 已为负责人，保持不变 -->
           <div class="note">团队负责人</div>
         </div>
         <div class="level">省级一等奖</div>
@@ -449,7 +475,6 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥈</div>
         <div class="info">
           <div class="name">中国国际大学生创新大赛</div>
-          <!-- ✅ 团队成员 → 团队负责人 -->
           <div class="note">团队负责人</div>
         </div>
         <div class="level">省级二等奖</div>
@@ -458,7 +483,6 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥈</div>
         <div class="info">
           <div class="name">「国才杯」全国大学生外语能力大赛</div>
-          <!-- ✅ 团队成员 → 团队负责人 -->
           <div class="note">团队负责人</div>
         </div>
         <div class="level">省级二等奖</div>
@@ -467,7 +491,6 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥈</div>
         <div class="info">
           <div class="name">蓝桥杯全国软件和信息技术专业人才大赛</div>
-          <!-- 个人赛无需修改 -->
           <div class="note">个人赛</div>
         </div>
         <div class="level">省级二等奖</div>
@@ -476,7 +499,6 @@ html.js .reveal.visible{opacity:1;transform:none}
         <div class="medal">🥉</div>
         <div class="info">
           <div class="name">计算机程序设计大赛</div>
-          <!-- ✅ 团队成员 → 团队负责人 -->
           <div class="note">团队负责人</div>
         </div>
         <div class="level">省级三等奖</div>
@@ -527,8 +549,16 @@ window.addEventListener('scroll',()=>{
   links.forEach((a,i)=>a.style.color = i===idx ? 'var(--accent)' : '');
 },{passive:true});
 
-// ===== 3. GitHub 仓库数量动态刷新（三层兜底） =====
-// 兜底优先级：API 实时数据 > localStorage 缓存 > HTML 硬编码默认值(21)
+// ===== 3. GitHub 仓库数量：低频自动 + 手动刷新 =====
+const GITHUB_CONFIG = {
+  username: "linhanmo",
+  cacheKey: "github_repo_count",
+  cacheTimeKey: "github_repo_update_time",
+  // ✅ 12小时缓存 = 每天最多自动请求2次
+  cacheValidMs: 12 * 3600 * 1000,
+  fallbackCount: 21
+};
+
 function animateNumber(element, target, duration = 1200) {
   if (!element) return;
   const start = parseInt(element.textContent) || 0;
@@ -547,23 +577,25 @@ function animateNumber(element, target, duration = 1200) {
   requestAnimationFrame(update);
 }
 
+/**
+ * @param {boolean} forceRefresh - true=忽略缓存强制请求API（手动按钮触发）
+ */
 async function updateGitHubRepoCount(forceRefresh = false) {
-  const GITHUB_USERNAME = "linhanmo";
-  const CACHE_KEY = "github_repo_count";
-  const CACHE_TIME_KEY = "github_repo_update_time";
-  const CACHE_VALID_MS = 3600 * 1000;
-  // ✅ 硬编码兜底值，与 HTML 中的默认值保持一致
-  const FALLBACK_COUNT = 21;
-
   const el1 = document.getElementById("github-repo-count");
   const el2 = document.getElementById("github-repo-count-2");
+  const btns = document.querySelectorAll('.refresh-btn');
 
-  // 第一层：本地缓存（1小时内有效）
+  // 手动刷新时启动按钮旋转动画
+  if (forceRefresh) {
+    btns.forEach(b => b.classList.add('spinning'));
+  }
+
+  // 非强制刷新时检查缓存
   if (!forceRefresh) {
     try {
-      const cachedCount = localStorage.getItem(CACHE_KEY);
-      const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
-      if (cachedCount && cachedTime && (Date.now() - Number(cachedTime) < CACHE_VALID_MS)) {
+      const cachedCount = localStorage.getItem(GITHUB_CONFIG.cacheKey);
+      const cachedTime = localStorage.getItem(GITHUB_CONFIG.cacheTimeKey);
+      if (cachedCount && cachedTime && (Date.now() - Number(cachedTime) < GITHUB_CONFIG.cacheValidMs)) {
         animateNumber(el1, Number(cachedCount));
         animateNumber(el2, Number(cachedCount));
         return;
@@ -571,9 +603,8 @@ async function updateGitHubRepoCount(forceRefresh = false) {
     } catch (e) {}
   }
 
-  // 第二层：GitHub API 实时请求
   try {
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}?t=${Date.now()}`);
+    const res = await fetch(`https://api.github.com/users/${GITHUB_CONFIG.username}?t=${Date.now()}`);
     if (res.status === 403) throw new Error("Rate limit exceeded");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     
@@ -581,8 +612,8 @@ async function updateGitHubRepoCount(forceRefresh = false) {
     const realCount = data.public_repos;
 
     try {
-      localStorage.setItem(CACHE_KEY, realCount);
-      localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
+      localStorage.setItem(GITHUB_CONFIG.cacheKey, realCount);
+      localStorage.setItem(GITHUB_CONFIG.cacheTimeKey, Date.now().toString());
     } catch (e) {}
 
     animateNumber(el1, realCount);
@@ -590,27 +621,33 @@ async function updateGitHubRepoCount(forceRefresh = false) {
 
   } catch (err) {
     console.warn("[GitHub] API 获取失败:", err.message);
-    
-    // 第三层：过期缓存兜底
+    // 兜底：过期缓存 > HTML硬编码
     try {
-      const staleCache = localStorage.getItem(CACHE_KEY);
-      if (staleCache) {
-        animateNumber(el1, Number(staleCache));
-        animateNumber(el2, Number(staleCache));
-        return;
-      }
+      const staleCache = localStorage.getItem(GITHUB_CONFIG.cacheKey);
+      const fallback = staleCache ? Number(staleCache) : GITHUB_CONFIG.fallbackCount;
+      animateNumber(el1, fallback);
+      animateNumber(el2, fallback);
     } catch(e){}
-    
-    // 最终兜底：HTML 中已硬编码 FALLBACK_COUNT(21)，无需额外操作
-    // 若页面被 JS 意外清空了数字，此处可强制回填
-    if (el1 && (!el1.textContent || el1.textContent === '0')) {
-      animateNumber(el1, FALLBACK_COUNT);
-      animateNumber(el2, FALLBACK_COUNT);
-    }
+  } finally {
+    // 无论成功失败，停止按钮旋转
+    btns.forEach(b => b.classList.remove('spinning'));
   }
 }
 
+// 页面加载：仅在有缓存过期或无缓存时才请求API
 document.addEventListener("DOMContentLoaded", () => updateGitHubRepoCount(false));
+
+// ✅ 绑定两个刷新按钮的点击事件
+document.getElementById('refresh-hero')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  updateGitHubRepoCount(true);
+});
+document.getElementById('refresh-skills')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  updateGitHubRepoCount(true);
+});
 </script>
 
 </body>
